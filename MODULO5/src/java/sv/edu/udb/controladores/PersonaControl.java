@@ -5,9 +5,12 @@
  */
 package sv.edu.udb.controladores;
 
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import sv.edu.udb.entidades.Persona;
 
 /**
@@ -16,13 +19,24 @@ import sv.edu.udb.entidades.Persona;
  */
 @ManagedBean(name = "personaControl")
 @ViewScoped
-public class PersonaControl {
+public class PersonaControl implements Serializable{
     private Persona persona;
     
     @PostConstruct
     public void init()
     {
+        persona = new Persona();
         
+    }
+    
+    public void onDateSelect()
+    {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Hola mundo"));
+    }
+    
+    public void guardarPersona()
+    {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Guardar persona"));    
     }
 
     /**
@@ -30,5 +44,15 @@ public class PersonaControl {
      */
     public PersonaControl() {
     }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+    
+    
     
 }
