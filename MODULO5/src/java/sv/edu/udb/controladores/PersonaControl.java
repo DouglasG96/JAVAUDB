@@ -6,6 +6,7 @@
 package sv.edu.udb.controladores;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,11 +23,16 @@ import sv.edu.udb.entidades.Persona;
 @ViewScoped
 public class PersonaControl implements Serializable{
     private Persona persona;
+    private List<Persona> listaPersona;
+
     
     @PostConstruct
     public void init()
     {
         persona = new Persona();
+        listaPersona = new List<Persona>();
+        cargarPersonas();
+        
     }
     
     public void onDateSelect()
@@ -62,6 +68,16 @@ public class PersonaControl implements Serializable{
         this.persona = persona;
     }
     
+    public List<Persona> cargarPersonas()
+    {
+        return this.listarPersonas();
+    }
+    
+    
+    public List<Persona> listarPersonas()
+    {
+        listaPersona.add()
+    }
     
     
 }
