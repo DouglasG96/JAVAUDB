@@ -35,9 +35,11 @@ public class PersonaControl implements Serializable{
     }
     
     public void clearMultiViewState() {
+        /*
         FacesContext context = FacesContext.getCurrentInstance();
         String viewId = context.getViewRoot().getViewId();
         PrimeFaces.current().multiViewState().clearAll(viewId, true, this::showMessage);
+        */
     }
 
     
