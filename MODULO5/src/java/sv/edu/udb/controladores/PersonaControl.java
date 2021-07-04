@@ -30,7 +30,7 @@ public class PersonaControl implements Serializable{
     public void init()
     {
         persona = new Persona();
-        listaPersona = new List<Persona>();
+        //listaPersona = new List<Persona>();
         cargarPersonas();
         
     }
@@ -76,7 +76,8 @@ public class PersonaControl implements Serializable{
     
     public List<Persona> listarPersonas()
     {
-        listaPersona.add()
+        //listaPersona.add()
+        return null;
     }
     
     
