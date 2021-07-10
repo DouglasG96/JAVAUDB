@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+        <ui:composition template="./../plantilla/plantilla.xhtml">
+            <ui:define name="content">
+                <div>
+                    <h5>Ajax Callback</h5>
+                       <h:form>
+                           <p:growl id="growl" showDetail="true"/>
+
+                           <p:graphicImage id="nature" name="/resources/images/babyyoda.jpeg" />
+
+                           <p:resizable for="nature" animate="true" ghost="true">
+                               <p:ajax listener="#{resizableView.onResize}" update="growl"/>
+                           </p:resizable>
+                       </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
