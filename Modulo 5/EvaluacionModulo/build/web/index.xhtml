@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./templates/template.xhtml">
+
+            <ui:define name="top">
+                   <p:commandButton value="Agregar producto" type="button" icon="pi pi-external-link" onclick="PF('dlg1').show()"/>
+
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="frmProducto" >
+    <div class="card">
+        <p:dataTable var="product" value="#{productoControl.productos}" paginator="true" 
+                      widgetVar="widgetTblProductos"
+                     paginatorPosition="bottom"  rows="10"   id="tblProductos"   >
+            
+             <f:facet name="header">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <span>Busqueda: </span>
+                    <p:inputText id="globalFilter" onkeyup="PF('widgetTblProductos').filter()" style="width:10rem" placeholder="" />
+                </div>
+            </f:facet>
+
+            
+            <p:column headerText="Codigo"  filterBy="#{product.codigo}" >
+                <h:outputText value="#{product.codigo}" />
+            </p:column>
+
+            <p:column headerText="Nombre" filterBy="#{product.nombre}">
+                <h:outputText value="#{product.nombre}" />
+            </p:column>
+
+            <p:column headerText="Modificar">
+                <p:commandButton value="Modificar"  ></p:commandButton>
+
+            </p:column>
+
+            <p:column headerText="Borrar">
+                <p:commandButton value="Borrar"  ></p:commandButton>
+            </p:column>
+        </p:dataTable>
+    </div>
+</h:form>
+                
+             
+        
+                
+ <p:dialog header="Nuevo producto" widgetVar="dlg1" minHeight="100" width="450" showEffect="fade">
+  
+        <h:form id="frmAgregar">
+                    
+        <p:panelGrid>
+         <p:row>
+             <p:column>
+                 <p:outputLabel>Codigo:</p:outputLabel>
+             </p:column>
+             <p:column>
+                 <p:inputText id="codigo"  value="#{productoControl.producto.codigo}"  ></p:inputText>
+             </p:column>             
+         </p:row>
+         
+         <p:row>
+             <p:column>
+                 <p:outputLabel>Nombre:</p:outputLabel>
+             </p:column>
+             <p:column>
+                 <p:inputText id="nombre" value="#{productoControl.producto.nombre}"   ></p:inputText>
+             </p:column>             
+         </p:row>
+       
+     </p:panelGrid>
+     <p:panelGrid>
+           <p:row>
+             
+               <p:commandButton value="Agregar producto"
+                                 action="#{productoControl.agregarProducto}" update=":frmProducto:tblProductos frmAgregar" />
+
+            </p:row>
+         
+     </p:panelGrid>            
+                    
+                </h:form>
+     
+     
+</p:dialog>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
