@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/plantilla.xhtml">
+
+            <ui:define name="content">
+                <div class="card">
+                    <h:form id="form">
+                        <p:commandButton value="Nuevo Producto" oncomplete="PF('wdlgNuevo').show()" update="dlgNuevo"/>
+                        <p:dataTable id="productos" var="productos" value="#{productoControl.listaProducto}" 
+                                     rowKey="#{productoControl.producto.idProducto}"
+                                     paginator="true"
+                                     paginatorPosition="bottom"  rows="10">
+                            <p:column headerText="Codigo">
+                                <h:outputText value="#{productos.idProducto}" />
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{productos.descripcion}" />
+                            </p:column>
+                            <p:column headerText="Modificar">
+                                <p:commandButton value="Modificar" />
+                            </p:column>
+                            <p:column headerText="Borrar">
+                                <p:commandButton value="Borrar" />
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:dialog header="NUEVO" widgetVar="wdlgNuevo" id="dlgNuevo">
+                            <p:panelGrid columns="1">
+                                <p:outputLabel value="NOMBRE:"/>
+                                <p:inputText value="#{productoControl.producto.descripcion}"/>
+                                <p:commandButton value="Guardar" action="#{productoControl.guardarProducto()}" oncomplete="PF('wdlgNuevo').hide()" />
+                            </p:panelGrid>
+                        </p:dialog>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
